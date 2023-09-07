@@ -12,7 +12,15 @@ constructor(private http: HttpClient) { }
 endpointURL: string = 'https://anime-facts-rest-api.herokuapp.com/api/v1/'
 
 searchAnime(name: string, id:string): Observable<any> {
-  return this.http.get<any>(this.endpointURL + name + `/${id}`)
+  return this.http.get<any>(this.endpointURL + this.getAnimeName(name) + `/${this.getAnimeID(id)}`)
+}
+
+getAnimeName(name: string) {
+  return name
+}
+
+getAnimeID(id: string) {
+  return id
 }
 
 }

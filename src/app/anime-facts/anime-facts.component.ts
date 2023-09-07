@@ -20,13 +20,13 @@ export class AnimeFactsComponent implements OnInit {
   
   getAnimeFacts() {
     for(let i = 0; i < this.animeNames.length; i++) {
-      this.animeFact.searchAnime(this.animeNames[i])
+      let animeName = this.animeFact.getAnimeName(this.animeNames[i])
       for(let j = 0; j < this.animeFactsID.length; j++) {
-        this.animeFact.searchAnime(this.animeFactsID[i])
+        let animeID = this.animeFact.getAnimeID(this.animeFactsID[i])
+        this.animeFact.searchAnime(animeName, animeID).subscribe((res: any) => {
+          this.apiResponse = JSON.stringify(res)
+        })
       }
-      .subscribe((res: any) => {
-        this.apiResponse = JSON.stringify(res)
-      })
     }
 
   }
